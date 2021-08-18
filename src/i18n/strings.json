@@ -1,0 +1,26 @@
+{
+    "en": {
+        "error_valid_card": "Please provide a valid card number",
+        "error_valid_expiry": "Please provide a valid expiry date",
+        "error_valid_cvc": "Please provide a valid CVC number",
+        "error_card_name": "Please enter a valid card holder name",
+        "aria_pay_status": "Connecting to payment gateway, please wait...",
+        "pay": "PAY {0}{1}",
+        "placeholder_cardholder_name": "Cardholder Name",
+        "placeholder_cvc": "CVC",
+        "placeholder_expiry": "MM/YY",
+        "placeholder_card_number": "Card Number"
+    },
+    "fr": {
+        "error_valid_card": "Veuillez fournir un numéro de carte valide",
+        "error_valid_expiry": "Veuillez fournir une date d'expiration valide",
+        "error_valid_cvc": "Veuillez fournir un numéro CVC valide",
+        "error_card_name": "Veuillez saisir un nom de titulaire de carte valide",
+        "aria_pay_status": "Connexion à la passerelle de paiement, veuillez patienter...",
+        "pay": "PAYER {0}{1}",
+        "placeholder_cardholder_name": "Nom du titulaire",
+        "placeholder_cvc": "CVC",
+        "placeholder_expiry": "MM/YY",
+        "placeholder_card_number": "Numéro de carte"        
+    }
+}

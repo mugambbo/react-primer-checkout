@@ -1,38 +1,213 @@
-.App {
-  text-align: center;
+@import url("https://fonts.googleapis.com/css?family=Roboto&display=swap");
+* {
+	font-family: "Roboto";
 }
 
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+.card-input {
+	border: none;
+	height: 1.5rem;
+	font-size: 1.0625rem;
+	padding-left: 0.875rem;
+	padding-right: 4.875rem;
+	line-height: 147.6%;
+	padding-top: 0.325rem;
+	padding-bottom: 0.3rem;
+	background-color: transparent;
+	border: "none";
+	padding: 10px;
 }
 
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+.input-container {
+	display: flex;
+	align-items: center;
+	background-color: rgba(0, 0, 0, 0.09);
+	border-radius: 5px;
+	width: 100%;
+	position: relative;
+	border: 2px solid transparent;
+}
+
+.my-8 {
+	margin-top: 8px;
+	margin-bottom: 8px;
+}
+
+.mx-8 {
+	margin-left: 8px;
+	margin-right: 8px;
+}
+
+.input-icon {
+	display: flex;
+	vertical-align: middle;
+	padding-left: 8px;
+}
+
+.full-width {
+	width: 100%;
+}
+
+.inline {
+	display: inline-block;
+	transition: opacity .4s cubic-bezier(.55,.055,.675,.19),transform .4s cubic-bezier(.25,.46,.45,.94),-webkit-transform .4s cubic-bezier(.25,.46,.45,.94);
+}
+
+.form-subcontainer {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center
+}
+
+.checkout-center {
+	display: flex;
+	align-items: center;
+	justify-content: center;
+}
+
+.card-input-extras {
+	transform: translateX(30px);
+	padding-right: 0px;
+	width: 'calc(100% - 32px)'
+}
+
+input {
+	border: none;
+	height: 2rem;
+	font-size: 1.0625rem;
+	padding-left: 0.875rem;
+	line-height: 147.6%;
+	padding-top: 0.325rem;
+	padding-bottom: 0.3rem;
+	border-radius: 4px;
+	background-color: transparent;
+	border-top-left-radius: 4px;
+	border-top-right-radius: 4px;
+	border: "none";
+	outline: none;
+}
+
+.input-container:focus {
+	outline: 5px dashed red;
+}
+
+.pay-btn {
+  display: block;
+  width: 100%;
+  height: 40px;
+  margin-top: 24px;
+  background-color: #000;
+  border-radius: 20px;
+  color: #fff;
+  font-weight: 600;
+  font-size: large;
+  text-transform: uppercase;
+  cursor: pointer;
+  appearance: none;
+  outline: none;
+  border-style: none;  
+}
+
+.pay-btn-small {
+  padding-right: 24px;
+  padding-left: 24px;
+  height: 40px;
+}
+
+.helper {
+	display: block;
+	color: var(--checkout-ink-low-contrast);
+	font-size: 0.9375rem;
+	letter-spacing: 0.0275rem;
+	margin-top: 8px;  
+}
+
+.helper-error {
+	opacity: 1;
+	transform: none;	
+	display: block;
+	color: var(--checkout-danger);
+	font-size: 0.9375rem;
+	letter-spacing: 0.0275rem;
+	margin-top: 8px;  
+	transition-property: opacity, transform;
+	transition-duration: 0.32s;
+	transition-timing-function: cubic-bezier(0.164, 0.85, 0.45, 1);	
+}
+
+.pay-btn-loading {
+	padding-right: 4px;
+	padding-left: 4px;
+	width: 40px;
+	height: 40px;
+}
+
+.input-border {
+	border: 2px solid #ff8c78;
+}
+
+.dot-windmill {
+	position: relative;
+	top: -10px;
+	width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #ffffff;
+	transform-origin: 5px 15px;
+	animation: dotWindmill 2s infinite linear;
   }
-}
-
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+  
+  .dot-windmill::before, .dot-windmill::after {
+	content: '';
+	display: inline-block;
+	position: absolute;
   }
-  to {
-    transform: rotate(360deg);
+  
+  .dot-windmill::before {
+	left: -8.66px;
+	top: 15px;
+	width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #ffffff;
   }
+  
+  .dot-windmill::after {
+	left: 8.66px;
+	top: 15px;
+	width: 10px;
+	height: 10px;
+	border-radius: 5px;
+	background-color: #ffffff;
+	color: #ffffff;
+  }
+  
+  @keyframes dotWindmill {
+	0% {
+	  transform: rotateZ(0deg) translate3d(0, 0, 0);
+	}
+	100% {
+	  transform: rotateZ(720deg) translate3d(0, 0, 0);
+	}
+  }
+
+.checkout-input > input:disabled {
+	background: var(--checkout-bg-low-contrast);
+	cursor: not-allowed;
+}
+
+.checkout-input > input:disabled,
+.checkout-input > input:disabled ~ .helper {
+	color: var(--checkout-ink-low-contrast);
+}
+
+.checkout-input > input:disabled ~ svg {
+	fill: var(--checkout-ink-low-contrast);
+}  
+
+:root {
+	--checkout-ink-low-contrast: rgba(60, 60, 67, 0.3);
 }
