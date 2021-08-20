@@ -1,7 +1,16 @@
 {
-  "name": "react-primer-checkout",
+  "name": "react-checkout-challenge",
   "version": "0.1.0",
   "private": true,
+  "description": "An unofficial react client sdk that uses the Primer API to provide merchants with the front-end tools required to collect payment information and generate a token",
+  "keywords": [
+    "payments",
+    "checkout",
+    "primer",
+    "challenge",
+    "token"
+  ],
+  "homepage": "https://github.com/mugambbo/react-primer-checkout",
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
@@ -24,6 +33,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
+    "size": "npm run build && size-limit",
     "test:coverage": "react-scripts test --coverage --runInBand --watchAll=false",
     "code:format": "prettier --write src/**/*.{ts,tsx,scss,css,json}"
   },
@@ -46,12 +56,14 @@
     ]
   },
   "devDependencies": {
+    "@size-limit/file": "^5.0.3",
     "@types/enzyme-adapter-react-16": "^1.0.6",
     "@wojtekmaj/enzyme-adapter-react-17": "^0.6.3",
     "enzyme": "^3.11.0",
     "enzyme-adapter-react-16": "^1.15.6",
     "enzyme-to-json": "^3.6.2",
     "jest-fetch-mock": "^3.0.3",
+    "size-limit": "^5.0.3",
     "ts-jest": "^27.0.5"
   },
   "jest": {
@@ -96,5 +108,11 @@
       "^.+\\.module\\.(css|sass|scss)$": "identity-obj-proxy",
       "src/(.*)$": "<rootDir>/src/$1"
     }
-  }
+  },
+  "size-limit": [{
+      "path": "build/static/**/*.{js,css,svg,woff,woff2,png,ttf,html}",
+      "limit": "200 kb"
+
+    }
+  ]
 }
