@@ -1,7 +1,7 @@
 {
   "name": "react-checkout-challenge",
   "version": "0.1.0",
-  "private": true,
+  "private": false,
   "description": "An unofficial react client sdk that uses the Primer API to provide merchants with the front-end tools required to collect payment information and generate a token",
   "keywords": [
     "payments",
