@@ -1,21 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
+import App from './App';
 import reportWebVitals from './reportWebVitals';
-import { Checkout } from './components/checkout';
-import { PaymentMethods } from './components/checkout/CheckoutContainer';
 
 ReactDOM.render(
   <React.StrictMode>
-    <Checkout
-      clientToken={""}
-      allowPaymentMethods={[PaymentMethods.Card]}
-      lang="en"
-      theme="light"
-      amount={50}
-      currency="$"
-      onTokenizationComplete={() => {}}
-       />
+    <App />
   </React.StrictMode>,
   document.getElementById('root')
 );
@@ -24,6 +15,3 @@ ReactDOM.render(
 // to log results (for example: reportWebVitals(console.log))
 // or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
 reportWebVitals();
-
-
-export default Checkout;
