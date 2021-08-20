@@ -1,0 +1,46 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<PayButton /> renders the pay button: default 1`] = `
+<button
+  className="pay-btn"
+  disabled={false}
+  id="pay"
+  style={Object {}}
+  type="submit"
+>
+  <div
+    className="checkout-center"
+  >
+    <img
+      alt=""
+      height="24px"
+      style={
+        Object {
+          "marginRight": 8,
+        }
+      }
+    />
+    PAY {0}{1}
+  </div>
+</button>
+`;
+
+exports[`<PayButton /> renders the pay button: loading 1`] = `
+<button
+  className="pay-btn pay-btn-loading"
+  disabled={true}
+  id="pay"
+  style={Object {}}
+  type="submit"
+>
+  <div
+    className="checkout-center"
+  >
+    <div
+      aria-valuetext="Connecting to payment gateway, please wait..."
+      className="dot-windmill"
+      role="progressbar"
+    />
+  </div>
+</button>
+`;

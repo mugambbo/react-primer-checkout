@@ -3,3 +3,9 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+
+/* eslint-disable import/no-extraneous-dependencies */
+import Enzyme from 'enzyme';
+import ReactSeventeenAdapterUnofficial from '@wojtekmaj/enzyme-adapter-react-17';
+
+Enzyme.configure({ adapter: new ReactSeventeenAdapterUnofficial() });

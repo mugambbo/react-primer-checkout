@@ -39,6 +39,6 @@ export interface PaymentTokenizationResponse {
           productName: string; //"VISA"
        }
     },
-    vaultData: string; //null,
-    threeDSecureAuthentication: string; //null    
+    vaultData: any; //null,
+    threeDSecureAuthentication: any; //null    
 }

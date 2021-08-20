@@ -12,19 +12,18 @@ function App() {
   
   const handleTokenizationComplete = (token: PaymentTokenizationResponse, err: Error) => {
     if (!err){
-      console.log("Token generated successfully: "+token.token, token);
+      console.log("Token generated successfully: "+token?.token, token);
     } else {
       console.log("Oops! Something went wrong", err);
     }
   }
 
   return (
-    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', width: '450px', marginLeft: '16px'}}>
+    <div style={{display: 'flex', alignItems: 'center', justifyContent: 'center', marginLeft: '16px'}}>
     <Checkout
       clientToken={clientToken}
       allowPaymentMethods={[PaymentMethods.Card]}
       lang="en"
-      inputStyles={{}}
       theme="light"
       btnStyles={{
         logoSrc: "logo192.png",

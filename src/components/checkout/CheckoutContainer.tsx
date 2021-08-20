@@ -1,6 +1,6 @@
 import React, { ReactElement, ReactNode, useEffect, useState } from "react";
 import Analytics, { Events } from "../../adapter/Analytics";
-import Config, { CheckoutSDKPaths } from "../../config";
+import { CheckoutSDKPaths } from "../../config";
 import { EXPIRY_MASK, MINIMUM_CARD_NUMBER_DIGITS } from "../../Constants";
 import { applyFormatMask, buildPaymentInstrument, isCVCValid, isExpiryValid, numbersOnlyString, whatCardType } from "../../helpers/CardHelper";
 import { Card, CardTypes } from "../../helpers/CardTypes";
@@ -24,9 +24,9 @@ export interface CheckoutProps {
     readonly currency?: string; /** The currency to display beside the amount */
     readonly policy?: ReactNode; /** Policy statement or terms of service to display between the form and button */
     readonly btnStyles?: PayButtonStyles; /** Styles to applied to the pay button */
-    readonly [allowPaymentMethods: string]: any; /** Payment methods to support at checkout */
+    readonly allowPaymentMethods: Array<PaymentMethods>; /** Payment methods to support at checkout */
     readonly clientToken: string; /** The client token to use for authenticating the payment */
-    readonly inputStyles: object; /** Styles to be applied to the input fields */
+    readonly inputStyles?: object; /** Styles to be applied to the input fields */
     readonly theme?: "dark" | "light"; /** Theme to use for the overall interface */
     readonly style?: object; /** Style to be applied to the form element */
     onTokenizationComplete(tokenRes?: PaymentTokenizationResponse, err?: Error): void; /** Callback function executed when token generation request is complete */
@@ -69,9 +69,7 @@ function CheckoutContainer(props: CheckoutProps): ReactElement {
         if (eventName === InputFields.CardNumber) { //Validate card number
             const theCardNumbersOnly = numbersOnlyString(e.target.value);
             const theCardType = whatCardType(theCardNumbersOnly);
-            console.log(theCardType);
             const theCardNumberFormatted = applyFormatMask(theCardNumbersOnly, theCardType?.mask);
-            console.log(theCardNumberFormatted);
             setCardType(theCardType? theCardType: CardTypes.GENERIC);
             setCardNumber(theCardNumberFormatted.trim());
             if (theCardType && theCardType.mask.length === theCardNumberFormatted.length) {
@@ -84,9 +82,8 @@ function CheckoutContainer(props: CheckoutProps): ReactElement {
         } else if (eventName === InputFields.CardExpiry) { //Validate card expiry date
             const theCardExpiry = e.target.value;
             const theCardExpiryNumbersOnly = numbersOnlyString(theCardExpiry);
-            console.log(theCardExpiry);
             if (theCardExpiryNumbersOnly.length <= 2) {
-                setCardExpiry(theCardExpiry.replaceAll(" / ", "").trim());
+                setCardExpiry(theCardExpiry.replace(" / ", "").trim());
                 setCardErrors({...cardErrors, cardExpiry: ""});
                 
             } else if (theCardExpiryNumbersOnly.length > 2) {
@@ -98,7 +95,6 @@ function CheckoutContainer(props: CheckoutProps): ReactElement {
                     const monthYear = theCardExpiryFormattedClean.split("/");
                     const month = monthYear[0].trim();
                     const year = monthYear[1].trim();
-                    console.log(year+","+month);
                     if (isExpiryValid(month, year)) {
                         setCardErrors({...cardErrors, cardExpiry: ""});
                     } else {
@@ -132,15 +128,12 @@ function CheckoutContainer(props: CheckoutProps): ReactElement {
     const handlePay = async (event: React.FormEvent<HTMLFormElement>): Promise<void> => {
         event.preventDefault();
         setLoading(true);
-        console.log("Pay clicked");
         if (cardErrors.cardNumber || cardErrors.cardExpiry || cardErrors.cardCVC || cardNameError) return;
         try {
             const data = buildPaymentInstrument(cardNumber, cardCVC, cardExpiry, cardName);
-            // const tokenRes: PaymentTokenizationResponse = await CheckoutFetch.post(CheckoutSDKPaths.PAYMENT_INSTRUMENT, props.clientToken, data);
-            setTimeout(() => {
-                // props.onTokenizationComplete(tokenRes);
-                setLoading(false);
-            }, 15000);
+            const tokenRes: PaymentTokenizationResponse = await CheckoutFetch.post(CheckoutSDKPaths.PAYMENT_INSTRUMENT, props.clientToken, data);
+            props.onTokenizationComplete(tokenRes);
+            setLoading(false);
         } catch(err) {
             setLoading(false);
             props.onTokenizationComplete(undefined, err.error?? err);
@@ -153,7 +146,7 @@ function CheckoutContainer(props: CheckoutProps): ReactElement {
     }
 
     return (
-        <I18nProvider>
+        <I18nProvider lang={props.lang}>
             <CheckoutFormUI 
                 cardName={cardName} 
                 cardNumber={cardNumber} 

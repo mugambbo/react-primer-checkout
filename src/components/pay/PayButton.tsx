@@ -21,7 +21,7 @@ function PayButton({ btnStyles, amount, currency, loading }: PayButtonProps) {
   const contentString = useI18nContext();
 
     return (
-        <button type="submit" className={"pay-btn" + (btnStyles?.btnVariant === BtnVariant.small? " pay-btn-small": "") + (loading? " pay-btn-loading": "")} style={{...btnStyles?.style}} disabled={loading} >
+        <button id="pay" type="submit" className={"pay-btn" + (btnStyles?.btnVariant === BtnVariant.small? " pay-btn-small": "") + (loading? " pay-btn-loading": "")} style={{...btnStyles?.style}} disabled={loading} >
           {loading? (
           <div className="checkout-center">
             <div className="dot-windmill" role="progressbar" aria-valuetext={I18nHelper.formatString(contentString.aria_pay_status)} ></div>

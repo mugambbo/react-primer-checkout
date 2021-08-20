@@ -1,9 +1,11 @@
 import React from 'react';
-import { render, screen } from '@testing-library/react';
+import { shallow, mount, render } from 'enzyme';
 import App from './App';
+import { PaymentTokenizationResponse } from './helpers/PaymentToken';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+describe("<App />", () => {
+    it("Renders the App component", () => {
+        const wrapper = mount(<App />);
+        expect(wrapper).toMatchSnapshot();
+    })
+})

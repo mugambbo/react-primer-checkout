@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useState } from 'react'
+import React, { ReactElement, useEffect, useRef, useState } from 'react'
 import { Card } from '../../helpers/CardTypes';
 import I18nHelper from '../../helpers/I18nHelper';
 import { useI18nContext } from '../../i18n/I18nContext';
@@ -40,15 +40,6 @@ function CardField({cardType, onCardChange, inputStyles, cardNumber, cardExpiry,
     const [focus, setFocus] = useState(false);
     const contentString = useI18nContext();
 
-    const handleWindowChange = (mq: MediaQueryListEvent): void => {
-        console.log(mq.matches);
-        if (mq.matches) { //Above 500px
-            setWindowSize(0);
-        } else { //Below 500px
-            setWindowSize(1);
-        }
-    }
-
     const handleFocusIn = (event: React.FocusEvent<HTMLInputElement>) => {
         setFocus(true);
     }
@@ -57,15 +48,19 @@ function CardField({cardType, onCardChange, inputStyles, cardNumber, cardExpiry,
         setFocus(false);
     }
 
-    useEffect(() => {
-        let mq: MediaQueryList = window.matchMedia("(min-width: 500px)");
-        mq.addEventListener('change', handleWindowChange);
-        if (mq.matches) { //Above 500px
+    const handleResize = () => {
+        const { innerWidth: width } = window;
+        if (width >= 500) {
             setWindowSize(0);
-        } else { //Below 500px
+        } else {
             setWindowSize(1);
         }
-    }, [])
+    }
+
+    useEffect(() => {
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     return (
         <>

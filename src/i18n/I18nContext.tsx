@@ -21,7 +21,6 @@ const I18nProvider = (props: I18nProviderProps) => {
         } else if(stringContent[lang]) {
             setContentString(stringContent[lang]);
         }
-        console.log("Auto Detected Browser Language: "+I18nHelper.getLanguage());
         return () => {
         }
     }, [lang, stringContent, props.lang]);

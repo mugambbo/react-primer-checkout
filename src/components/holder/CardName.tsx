@@ -7,7 +7,7 @@ interface CardNameProps {
     cardName: string;
     inputStyles?: object;
     loading: boolean;
-    onCardNameChange?(event: React.ChangeEvent): void
+    onCardNameChange(event: React.ChangeEvent): void
 }
 
 function CardName({loading, cardName, inputStyles, onCardNameChange}: CardNameProps) {
@@ -23,7 +23,7 @@ function CardName({loading, cardName, inputStyles, onCardNameChange}: CardNamePr
     }
 
     return (
-        <div className={`input-container my-8${focus? " input-border": ""}`} >
+        <div id="card-name" className={`input-container my-8${focus? " input-border": ""}`} >
             <div className="input-icon">
                 <UserIcon />
             </div>

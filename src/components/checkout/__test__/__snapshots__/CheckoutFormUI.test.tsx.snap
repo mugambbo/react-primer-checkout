@@ -1,0 +1,45 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`<CheckoutFormUI /> renders the checkout ui 1`] = `
+<form
+  className="full-width"
+  style={
+    Object {
+      "minWidth": "400px",
+    }
+  }
+>
+  <div
+    className="form-subcontainer"
+  >
+    <CardName
+      cardName=""
+      inputStyles={Object {}}
+      loading={false}
+      onCardNameChange={[MockFunction]}
+    />
+    <CardField
+      cardCVC=""
+      cardExpiry=""
+      cardNumber=""
+      cardType={
+        Object {
+          "cvcMask": "XXX",
+          "mask": "XXXX XXXX XXXX XXXX",
+          "name": "GENERIC",
+          "pattern": "",
+        }
+      }
+      loading={false}
+      onCardChange={[MockFunction]}
+    />
+    <PayButton
+      loading={false}
+    />
+    <span
+      className="helper"
+      id="helper-container"
+    />
+  </div>
+</form>
+`;
