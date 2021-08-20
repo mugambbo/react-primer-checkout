@@ -1,5 +1,4 @@
-import * as CardHelper from '../CardHelper';
-import { CardTypes } from "../CardTypes";
+import enzyme from 'enzyme';
 import I18nHelper from '../I18nHelper';
 
 describe('I18Helper: getLanguage', () => {

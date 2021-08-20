@@ -4,8 +4,6 @@ import CheckoutContainer, { PayButtonStyles, PaymentMethods } from '../CheckoutC
 import { BtnVariant } from '../../pay/PayButton';
 import I18nProvider from '../../../i18n/I18nContext';
 import { act } from 'react-dom/test-utils';
-import { PaymentClientToken, PaymentTokenizationResponse } from '../../../helpers/PaymentToken';
-import { parseJwt } from '../../../helpers/CheckoutFetch';
 
 describe('<CheckoutContainer />', () => {
     const onTokenizationComplete = jest.fn();

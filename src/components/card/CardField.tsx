@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect, useRef, useState } from 'react'
+import React, { ReactElement, useEffect, useState } from 'react'
 import { Card } from '../../helpers/CardTypes';
 import I18nHelper from '../../helpers/I18nHelper';
 import { useI18nContext } from '../../i18n/I18nContext';
