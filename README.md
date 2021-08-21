@@ -23,20 +23,22 @@ React Primer Checkout is a react library which provides merchants with the tools
 This package contains:
 - [The React library](https://github.com/mugambbo/react-primer-checkout)
 - [An Example App](https://github.com/mugambbo/react-primer-checkout/tree/master/react-checkout-example)
+- Typescript declarations
 
-Note: This package was engineered to be used in a staging environment only.
+**Note: This package was engineered to be used in a staging environment only.**
 
 ## Getting Started
 Before you begin, do create an account on primer.io so as to obtain your API key. Your API key will be used to generate an API token which is required by this library before payments can be initiated. See Primer API docs [here](https://primer.io/docs/api/) to learn more.
 
-<br />
 <br />
 
 ## Installation
 
 ## The React Library
 In the project directory, run:
-`$ npm install react-checkout-challenge`
+```sh
+$ npm install react-checkout-challenge
+```
 
 
 ## Usage
@@ -103,7 +105,7 @@ export default App;
 ## Checkout Props
 Here is a list of properties that can be used with the checkout library:
 | Properties            | Description                            |
-| ------------- |-------------|
+| :-------------: |-------------|
 | `lang`      | `optional` Language to use for the checkout component e.g. `fr`. Defaults to english `en`. This library currently supports `fr` and `en` languages |
 | `amount`      | `optional` Value to display beside the pay button e.g. `150`     |
 | `currency` | `optional` The currency to display on the pay button, beside the amount e.g. `$`     |
@@ -166,9 +168,12 @@ The example app was bootstrapped using create-react-app. To run it, execute the 
 3. `$ npm install`
 4. `$ npm start`
 
+## Minimum Requirements
+This react package supports a minimum React version of v16.8.
 
 ## Contributing
-If you want to contribute to `react-checkout-challenge`, feel free to fork this repository, create a new branch, make changes and create a pull request. It's that simple!
+If you want to contribute to [react-checkout-challenge](https://github.com/mugambbo/react-primer-checkout), feel free to fork this repository, create a new branch, make changes and create a pull request. It's that simple!
 
 ## Notes
-**This is react library is part of the Primer.io React Checkout Challenge**
+**This react library is part of the Primer.io React Checkout Challenge**
+
