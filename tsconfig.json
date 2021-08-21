@@ -2,14 +2,13 @@
   "compilerOptions": {
     "target": "es5",
     "lib": [
+      "es2016",
       "es2017",
       "es7",
       "es6",
       "dom"
     ],
     "outDir": "dist",
-    "allowJs": true,
-    "skipLibCheck": true,
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -19,14 +18,12 @@
     "allowSyntheticDefaultImports": true,
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,
+    "resolveJsonModule": true,
     "module": "esnext",
     "moduleResolution": "node",
-    "resolveJsonModule": true,
-    "isolatedModules": true,
     "declaration": true,
-    "noEmit": true,
-    "sourceMap": true,
     "jsx": "react-jsx",
+    "suppressImplicitAnyIndexErrors": true,
     "strict": true
   },
   "include": [
