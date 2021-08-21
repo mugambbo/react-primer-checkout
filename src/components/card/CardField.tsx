@@ -40,11 +40,11 @@ function CardField({cardType, onCardChange, inputStyles, cardNumber, cardExpiry,
     const [focus, setFocus] = useState(false);
     const contentString = useI18nContext();
 
-    const handleFocusIn = (event: React.FocusEvent<HTMLInputElement>) => {
+    const handleFocusIn = (_: React.FocusEvent<HTMLInputElement>) => {
         setFocus(true);
     }
 
-    const handleFocusOut = (event: React.FocusEvent<HTMLInputElement>) => {
+    const handleFocusOut = (_: React.FocusEvent<HTMLInputElement>) => {
         setFocus(false);
     }
 

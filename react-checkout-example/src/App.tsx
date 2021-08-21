@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './App.css';
 import styled from 'styled-components';
+import { Checkout } from 'react-checkout-challenge';
 
 const Container = styled.div`
     width: 100%;
@@ -62,8 +63,7 @@ function App() {
     <Container> 
         <Title>Like what you see? Buy it!</Title>
         <Caption>It only costs £50</Caption>
-      
-      {/* <Checkout /> */}
+        <Checkout />
     </Container>
   );
 }

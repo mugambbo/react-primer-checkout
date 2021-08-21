@@ -14,11 +14,11 @@ function CardName({loading, cardName, inputStyles, onCardNameChange}: CardNamePr
     const contentString = useI18nContext();
     const [focus, setFocus] = useState(false);
 
-    const handleFocusIn = (event: React.FocusEvent) => {
+    const handleFocusIn = (_: React.FocusEvent) => {
         setFocus(true);
     }
 
-    const handleFocusOut = (event: React.FocusEvent) => {
+    const handleFocusOut = (_: React.FocusEvent) => {
         setFocus(false);
     }
 
