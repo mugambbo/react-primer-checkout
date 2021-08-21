@@ -1,6 +1,6 @@
 {
   "name": "react-checkout-challenge",
-  "version": "0.1.0",
+  "version": "0.1.8",
   "private": false,
   "description": "An unofficial react client sdk that uses the Primer API to provide merchants with the front-end tools required to collect payment information and generate a token",
   "keywords": [
@@ -13,7 +13,14 @@
   "author": "Abdulmajid Isiaka",
   "license": "MIT",
   "homepage": "https://github.com/mugambbo/react-primer-checkout",
-  "types": "dist/index.d.tsx",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mugambbo/react-primer-checkout.git"
+  },
+  "types": "dist/esm/index.d.ts",
+  "main": "dist/esm/index.js",
+  "jsnext:main": "dist/cjs/index.js",
+  "module": "dist/esm/index.js",
   "files": ["dist/**/*"],
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
@@ -35,13 +42,12 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:esm": "tsc",
-    "build:cjs": "tsc --module commonjs --outDir dist/cjs",
+    "build:esm": "tsc && cp src/index.css dist/esm",
+    "build:cjs": "tsc --module commonjs --outDir dist/cjs && cp src/index.css dist/cjs",
     "build:all": "npm run build:esm && npm run build:cjs",
-    "build:babel": "rm -rf dist && NODE_ENV=production babel src/ --out-dir dist --copy-files",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "size": "npm run build && size-limit",
+    "size": "npm run build:all && size-limit",
     "test:coverage": "react-scripts test --coverage --runInBand --watchAll=false",
     "code:format": "prettier --write src/**/*.{ts,tsx,scss,css,json}"
   },
@@ -64,8 +70,8 @@
     ]
   },
   "peerDependencies": {
-    "react": ">16.0.2",
-    "react-dom": ">16.0.2"
+    "react": "^17.0.18",
+    "react-dom": "^17.0.18"
   },
   "devDependencies": {
     "@size-limit/file": "^5.0.3",
@@ -124,7 +130,7 @@
   },
   "size-limit": [
     {
-      "path": "build/static/**/*.{js,css,svg,woff,woff2,png,ttf,html}",
+      "path": "dist/**/*.{js,css,svg,woff,woff2,png,ttf,html,ts,tsx}",
       "limit": "200 kb"
     }
   ]

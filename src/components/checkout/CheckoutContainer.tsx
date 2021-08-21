@@ -29,7 +29,7 @@ export interface CheckoutProps {
     readonly inputStyles?: object; /** Styles to be applied to the input fields */
     readonly theme?: "dark" | "light"; /** Theme to use for the overall interface */
     readonly style?: object; /** Style to be applied to the form element */
-    onTokenizationComplete(tokenRes?: PaymentTokenizationResponse, err?: Error): void; /** Callback function executed when token generation request is complete */
+    onTokenizationComplete(tokenRes: PaymentTokenizationResponse | undefined, err?: Error): void; /** Callback function executed when token generation request is complete */
 }
 
 export interface PayButtonStyles {

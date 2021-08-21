@@ -139,16 +139,7 @@ input {
   height: 40px;
 }
 
-.helper {
-	display: block;
-	color: var(--checkout-ink-low-contrast);
-	font-size: 0.9375rem;
-	letter-spacing: 0.0275rem;
-	margin-top: 8px;  
-}
-
 .helper-error {
-	opacity: 1;
 	transform: none;	
 	display: block;
 	color: var(--checkout-danger);

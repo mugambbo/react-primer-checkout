@@ -35,7 +35,7 @@ function CheckoutFormUI({btnStyles, amount, currency, style, policy: Policy, car
         <CardField loading={loading} cardType={cardType} cardNumber={cardNumber} cardExpiry={cardExpiry} cardCVC={cardCVC} inputStyles={inputStyles} onCardChange={onCardChange} />
         {Policy}
         <PayButton loading={loading} btnStyles={btnStyles} amount={amount} currency={currency} />
-        <span id="helper-container" className={primaryError? "helper-error": "helper"}>{primaryError}</span>
+        <span id="helper-container" className="helper-error">{primaryError} </span>
       </div>
     </form>
   )

@@ -8,7 +8,7 @@
       "es6",
       "dom"
     ],
-    "outDir": "dist",
+    "outDir": "dist/esm",
     "noUnusedParameters": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
@@ -24,7 +24,8 @@
     "declaration": true,
     "jsx": "react-jsx",
     "suppressImplicitAnyIndexErrors": true,
-    "strict": true
+    "strict": true,
+    "allowJs": true
   },
   "include": [
     "src"

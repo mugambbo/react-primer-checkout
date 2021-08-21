@@ -9,7 +9,8 @@
         "placeholder_cardholder_name": "Cardholder Name",
         "placeholder_cvc": "CVC",
         "placeholder_expiry": "MM/YY",
-        "placeholder_card_number": "Card Number"
+        "placeholder_card_number": "Card Number",
+        "pay_alt": "Pay Button"
     },
     "fr": {
         "error_valid_card": "Veuillez fournir un numéro de carte valide",
@@ -21,6 +22,7 @@
         "placeholder_cardholder_name": "Nom du titulaire",
         "placeholder_cvc": "CVC",
         "placeholder_expiry": "MM/YY",
-        "placeholder_card_number": "Numéro de carte"        
+        "placeholder_card_number": "Numéro de carte",
+        "pay_alt": "Bouton Payer"
     }
 }
