@@ -28,7 +28,7 @@ function PayButton({ btnStyles, amount, currency, loading }: PayButtonProps) {
           </div>
           ): (
             <div className="checkout-center">
-              <img style={{marginRight: 8}} src={btnStyles?.logoSrc} height="24px" alt={I18nHelper.formatString(contentString.pay_alt)} />{I18nHelper.formatString(contentString.pay, {0: currency, 1: amount})}
+              <img style={{marginRight: 8}} src={btnStyles?.logoSrc} height="24px" alt="" />{I18nHelper.formatString(contentString.pay, {0: currency, 1: amount})}
             </div>
           )}
         </button>

@@ -225,4 +225,5 @@ input {
 
 :root {
 	--checkout-ink-low-contrast: rgba(60, 60, 67, 0.3);
+	--checkout-danger: #cc3300
 }
