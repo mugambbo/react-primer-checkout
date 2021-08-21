@@ -1,4 +1,4 @@
-# React Primer Checkout: Challenge
+# React Primer Checkout
 <div align="center">
   <a href="https://www.npmjs.com/package/react-checkout-challenge">
     <img alt="React Checkout Challenge" src="https://github.com/mugambbo/react-primer-checkout/raw/master/react-checkout-example/public/logo192.png" height="150px" />
