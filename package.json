@@ -13,7 +13,7 @@
   "author": "Abdulmajid Isiaka",
   "license": "MIT",
   "homepage": "https://github.com/mugambbo/react-primer-checkout",
-
+  "types": "dist/index.d.tsx",
   "files": ["dist/**/*"],
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
