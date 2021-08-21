@@ -1,46 +1,174 @@
 # React Primer Checkout: Challenge
+<div align="center">
+  <a href="https://www.npmjs.com/package/react-checkout-challenge">
+    <img alt="React Checkout Challenge" src="https://github.com/mugambbo/react-primer-checkout/raw/master/react-checkout-example/public/logo192.png" height="150px" />
+  </a>
+</div>
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+<div align="center">
+  <strong>With React Primer Checkout, acecpting payments on your react app just got easier</strong>
+  <br />
+  <br />
+  <a href="https://www.npmjs.com/package/react-checkout-challenge"><img src="https://img.shields.io/badge/npm-v7.21.0-blue" alt="Node version"></a>
+</div>
 
-## Available Scripts
+---
 
-In the project directory, you can run:
+![React Primer Checkout Screenshot](https://github.com/mugambbo/react-primer-checkout/raw/master/react-checkout-example/public/img1.png "React Primer Checkout Screenshot")
 
-### `npm start`
+---
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## About
+React Primer Checkout is a react library which provides merchants with the tools required to easily collect payment information and generate access tokens using APIs from primer.io. 
+This package contains:
+- [The React library](https://github.com/mugambbo/react-primer-checkout)
+- [An Example App](https://github.com/mugambbo/react-primer-checkout/tree/master/react-checkout-example)
 
-The page will reload if you make edits.\
-You will also see any lint errors in the console.
+Note: This package was engineered to be used in a staging environment only.
 
-### `npm test`
+## Getting Started
+Before you begin, do create an account on primer.io so as to obtain your API key. Your API key will be used to generate an API token which is required by this library before payments can be initiated. See Primer API docs [here](https://primer.io/docs/api/) to learn more.
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+<br />
+<br />
 
-### `npm run build`
+## Installation
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
+## The React Library
+In the project directory, run:
+`$ npm install react-checkout-challenge`
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Usage
+```JSX
+import React from 'react';
+import styled from 'styled-components';
+import Checkout from 'react-checkout-challenge';
+import { PaymentTokenizationResponse } from 'react-checkout-challenge/dist/esm/helpers/PaymentToken';
+import { PaymentMethods } from 'react-checkout-challenge/dist/esm/components/checkout/CheckoutContainer';
 
-### `npm run eject`
+//Using styled-components (not required)
+const Container = styled.div`
+    width: 100%;
+    padding-top: 100px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;`;
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+const Title = styled.div`
+    font-size: 1.5em;
+    font-weight: 500;
+    text-align: center;
+    display: flex;
+    margin-bottom: 8px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;`;
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+const Caption = styled.div`
+    font-size: 1.2em;
+    font-weight: 300;
+    color: grey;
+    text-align: center;`;
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+function App() {
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+    const PRIMER_CLIENT_TOKEN = "your-client-token-here";
+    const onTokenizationComplete = (tokenRes: PaymentTokenizationResponse, err?: Error) => {
+        console.log(tokenRes);
+    }
 
-## Learn More
+  return (
+    <Container> 
+        <Title>Like what you see? Buy it!</Title>
+        <Caption>It only costs 50 bucks</Caption>
+        <Checkout
+              clientToken={PRIMER_CLIENT_TOKEN}
+              allowPaymentMethods={[PaymentMethods.Card]}
+              lang={lang}
+              amount={50}
+              currency="£"
+              btnStyles={{
+                logoSrc: 'logo.png'
+              }}
+              onTokenizationComplete={onTokenizationComplete}
+              style={{width: '50%'}} />
+    </Container>
+  );
+}
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+export default App;
+```
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+## Checkout Props
+Here is a list of properties that can be used with the checkout library:
+| Properties            | Description                            |
+| ------------- |-------------|
+| `lang`      | `optional` Language to use for the checkout component e.g. `fr`. Defaults to english `en`. This library currently supports `fr` and `en` languages |
+| `amount`      | `optional` Value to display beside the pay button e.g. `150`     |
+| `currency` | `optional` The currency to display on the pay button, beside the amount e.g. `$`     |
+| `policy` | `optional` Terms or policy statement to display between the form and button. This is typically a React Node e.g. `<div>Terms and conditionals apply. Click here to learn more</div>`     |
+| `btnStyles` | `optional` A styling object used to customize the pay button. Supports three attributes: 1. `logoSrc` The url to an icon; 2. `btnVariant` A size variant of the pay button. It can be either `large` or `small` instances of `BtnVariant` 3. `style` The css style to be applied to the `button` component |
+| `allowPaymentMethods` | `required` An array of `PaymentMethods` you prefer to support on your app. Current methods supported include Credit Cards and PayPal (WIP).   |
+| `clientToken` | `required` A token you have generated by calling the primer API endpoint via your backend - `/auth/client-token` e.g. eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJhY2Nlc3NUb2tlbiI6ImYwOTZkNjMzLTM1Y...h9CzttPQ7mb3JaaSMQVo1QUSs  |
+| `inputStyles` | `optional` An object of css styles to be used on all input fields  |
+| `theme` | `optional` Theme to use for the overall interface. It can be `dark` or `light`  |
+| `style` | `optional` CSS Style object to use on the parent `form` component  |
+| `onTokenizationComplete` | `required` Callback function executed with the following arguments: [`PaymentTokenizationResponse`](https://primer.io/docs/api/#tag/Client-Tokens) and [`Error`](https://primer.io/docs/api/#section/API-Response-Status-Codes), when the access token generation request is complete  |
+
+## Sample Tokenization Response
+```JSON
+{
+   "deleted":false,
+   "createdAt":"2021-05-04T09:33:52.293855",
+   "updatedAt":"2021-05-04T09:33:52.293855",
+   "deletedAt":null,
+   "token":"alooYT5lS4m2JdL60rNo9nwxNjIwMTIwODMy",
+   "analyticsId":"-NxZbWYcXPiRMynOCdzu2G5L",
+   "tokenType":"SINGLE_USE",
+   "paymentInstrumentType":"PAYMENT_CARD",
+   "paymentInstrumentData":{
+      "last4Digits":"1111",
+      "expirationMonth":"03",
+      "expirationYear":"2030",
+      "cardholderName":"J Doe",
+      "network":"Visa",
+      "isNetworkTokenized":false,
+      "binData":{
+         "network":"VISA",
+         "issuerCountryCode":"US",
+         "issuerName":"JPMORGAN CHASE BANK, N.A.",
+         "issuerCurrencyCode":null,
+         "regionalRestriction":"UNKNOWN",
+         "accountNumberType":"UNKNOWN",
+         "accountFundingType":"UNKNOWN",
+         "prepaidReloadableIndicator":"NOT_APPLICABLE",
+         "productUsageType":"UNKNOWN",
+         "productCode":"VISA",
+         "productName":"VISA"
+      }
+   },
+   "vaultData":null,
+   "threeDSecureAuthentication":null
+} 
+```
+
+**See [API Documentation](https://primer.io/docs/api) to learn more**
+
+Want to see how it works? Install the Example App in this package.
+<br />
+<br />
+
+## The Example App
+The example app was bootstrapped using create-react-app. To run it, execute the following commands on your terminal:
+1. `$ [git clone mugambbo/react-primer-checkout](https://github.com/mugambbo/react-primer-checkout.git)`
+2. `$ cd react-checkout-example`
+3. `$ npm install`
+4. `$ npm start`
+
+
+## Contributing
+If you want to contribute to `react-checkout-challenge`, feel free to fork this repository, create a new branch, make changes and create a pull request. It's that simple!
+
+## Notes
+**This is react library is part of the Primer.io React Checkout Challenge**
