@@ -10,6 +10,7 @@
   <br />
   <br />
   <a href="https://www.npmjs.com/package/react-checkout-challenge"><img src="https://img.shields.io/badge/npm-v7.21.0-blue" alt="Node version"></a>
+  <a href="https://www.npmjs.com/package/react-checkout-challenge"><img src="https://img.shields.io/badge/size-111.69kb-green" alt="Unzipped library size"></a>
 </div>
 
 ---
