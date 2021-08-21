@@ -168,6 +168,8 @@ The example app was bootstrapped using create-react-app. To run it, execute the 
 3. `$ npm install`
 4. `$ npm start`
 
+**Click [here](https://react-primer-checkout.surge.sh/) or [here](https://react-primer-checkout.netlify.app/) to see a live demo**
+
 ## Minimum Requirements
 This react package supports a minimum React version of v16.8.
 
