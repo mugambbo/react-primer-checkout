@@ -138,8 +138,11 @@ jobs:
           command: npm publish
 
   deploy: #6 - Deploy the demo app to Surge.sh (netlify deployment is automated)
+    working_directory: ~/react-checkout-example
     <<: *defaults
     steps:
+      - checkout:
+          path: ~/react-checkout-example
       - attach_workspace:
           at: ~/react-checkout-example
       - restore_cache:

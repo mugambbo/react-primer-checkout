@@ -1,6 +1,6 @@
 {
   "name": "react-checkout-challenge",
-  "version": "0.1.17",
+  "version": "0.1.18",
   "private": false,
   "description": "An unofficial react client sdk that uses the Primer API to provide merchants with the front-end tools required to collect payment information and generate a token",
   "keywords": [
@@ -55,7 +55,7 @@
     "test:lint": "eslint --ext .tsx,.ts,.jsx,.js src/ --max-warnings 5",
     "test:snapshot": "npm run test -- -u --watchAll=false",
     "test:size": "size-limit",
-    "prepublish": "npm run test:coverage && npm run build:all && size-limit && npm run test:lint"
+    "build:publish": "npm run test:coverage && npm run build:all && size-limit && npm run test:lint"
   },
   "eslintConfig": {
     "extends": [
