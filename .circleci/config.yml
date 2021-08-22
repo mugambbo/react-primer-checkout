@@ -1,7 +1,6 @@
 version: 2.1
 
 defaults: &defaults
-  working_directory: ~/
   docker:
     - image: "circleci/node:14.17.5"
 
