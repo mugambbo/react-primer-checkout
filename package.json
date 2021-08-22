@@ -1,6 +1,6 @@
 {
   "name": "react-checkout-challenge",
-  "version": "0.1.14",
+  "version": "0.1.15",
   "private": false,
   "description": "An unofficial react client sdk that uses the Primer API to provide merchants with the front-end tools required to collect payment information and generate a token",
   "keywords": [
@@ -21,7 +21,9 @@
   "main": "dist/esm/index.js",
   "jsnext:main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
-  "files": ["dist/**/*"],
+  "files": [
+    "dist/**/*"
+  ],
   "dependencies": {
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
