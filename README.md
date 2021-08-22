@@ -6,11 +6,13 @@
 </div>
 
 <div align="center">
-  <strong>With React Primer Checkout, acecpting payments on your react app just got easier</strong>
+  <strong>With React Primer Checkout, accepting payments on your react app just got easier</strong>
+  <div><small>Pick from a wide range of payment instruments: Credit Card, PayPal, Apple Pay, Google Pay, etc.</small></div>
   <br />
   <br />
   <a href="https://www.npmjs.com/package/react-checkout-challenge"><img src="https://img.shields.io/badge/npm-v7.21.0-blue" alt="Node version"></a>
   <a href="https://www.npmjs.com/package/react-checkout-challenge"><img src="https://img.shields.io/badge/size-111.69kb-green" alt="Unzipped library size"></a>
+  <a href="https://www.npmjs.com/package/react-checkout-challenge"><img src="https://img.shields.io/badge/react-17.0.18-aqua" alt="React library"></a>
 </div>
 
 ---
@@ -30,8 +32,6 @@ This package contains:
 
 ## Getting Started
 Before you begin, do create an account on primer.io so as to obtain your API key. Your API key will be used to generate an API token which is required by this library before payments can be initiated. See Primer API docs [here](https://primer.io/docs/api/) to learn more.
-
-<br />
 
 ## Installation
 

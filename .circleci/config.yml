@@ -1,0 +1,171 @@
+version: 2.1
+
+defaults: &defaults
+  docker:
+    - image: "circleci/node:14.17.5"
+
+workflows: # Builds, test and deploy (only from master or staging branch)
+  version: 2
+  build-deploy:
+    jobs:
+      - setup
+      - unit:
+          requires:
+            - setup
+      - lint:
+          requires:
+            - setup
+
+      - build:
+          requires:
+            - setup
+            - unit
+            - lint
+
+      - size:
+          requires:
+            - build
+
+      - publish:
+          requires:
+            - build
+            - size
+          filters:
+            branches:
+              only: master # Only publishes when the commit is on the main branch
+
+      - deploy:
+          requires:
+            - publish
+          filters:
+            branches:
+              only: master # Only deploys when the commit is on the main branch                 
+
+jobs:
+  setup: #1 - Install dependencies
+    <<: *defaults
+    steps:
+      - checkout
+      - restore_cache:
+          keys:
+            - dependency-cache-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
+            # Use the latest cache if no exact match is found
+            - dependency-cache-
+      - run:
+          name: Setup dependencies
+          command: npm install
+      - save_cache: #Install NPM dependencies (package.json)
+          paths:
+            - node_modules
+          key: dependency-cache-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
+      - persist_to_workspace: #Save entire root directory for other jobs
+          root: .
+          paths: 
+            - .
+
+  unit: #2 - Build unit test
+    <<: *defaults
+    steps:
+      - attach_workspace: #Attach workspace to the saved root directory
+          at: .    
+      - run:
+          name: Build unit tests with report coverage
+          no_output_timeout: 30m
+          command: npm run test:coverage
+      - store_artifacts: # for display in Artifacts: https://circleci.com/docs/2.0/artifacts/ (Build Files)
+          path: coverage
+          destination: ./
+  
+  lint: #3 - Build lint test
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .    
+      - run:
+          name: Run lint test
+          command: npm run test:lint -- --format junit -o reports/junit/js-lint-results.xml
+      - store_test_results:
+          path: ./reports/junit/
+
+  build:
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Build React Web App for Staging
+          command: CI=false npm run build:all
+      - persist_to_workspace: #Required for publish and deploy jobs
+          root: .
+          paths:
+            - build
+      - store_artifacts: # for staging (Build Files)
+          path: build
+          destination: ./build
+
+  size: #4 - Test size-limit
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .
+      - run:
+          name: Install Headless Chrome dependencies
+          command: |
+            sudo apt-get update -qq && sudo apt-get install -yq \
+            gconf-service libasound2 libatk1.0-0 libatk-bridge2.0-0 libc6 libcairo2 libcups2 libdbus-1-3 \
+            libexpat1 libfontconfig1 libgcc1 libgconf-2-4 libgdk-pixbuf2.0-0 libglib2.0-0 libgtk-3-0 libnspr4 \
+            libpango-1.0-0 libpangocairo-1.0-0 libstdc++6 libx11-6 libx11-xcb1 libxcb1 libxcomposite1 libxcursor1 \
+            libxdamage1 libxext6 libxfixes3 libxi6 libxrandr2 libxrender1 libxss1 libxtst6 ca-certificates \
+            fonts-liberation libappindicator1 libnss3 lsb-release xdg-utils wget
+      - run:
+          name: Install puppeteer with chromium
+          command: |
+            npm i puppeteer
+      - run:
+          name: Run Build Size Test (max. 200 KB)
+          command: npm run test:size
+
+  publish: #5 - Publish SDK to Node Package Manager (npmjs.com)
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: .      
+      - run:
+          name: Authenticate with registry
+          command: echo "//registry.npmjs.org/:_authToken=$NPM_TOKEN" > ~/repo/.npmrc
+      - run:
+          name: Publish package
+          command: npm publish
+
+  deploy: #6 - Deploy the demo app to Surge.sh (netlify deployment is automated)
+    <<: *defaults
+    steps:
+      - attach_workspace:
+          at: ./react-checkout-example
+      - restore_cache:
+          keys:
+            - dependency-cache-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
+            # Use the latest cache if no exact match is found
+            - dependency-cache-
+      - run:
+          name: Sleep (wait 5 minutes for SDK to be published)
+          command: sleep 300
+      - run:
+          name: Setup dependencies
+          command: npm install
+      - save_cache: #Install NPM dependencies (package.json)
+          paths:
+            - node_modules
+          key: dependency-cache-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}          
+      - run:
+          name: Build React Demo App
+          command: CI=false npm run build
+      - store_artifacts: #Build files
+          path: build
+          destination: ./build          
+      - run: # Creates a 200.html file (only required for surge.sh)
+          name: Creates 200.html file
+          command: cp build/index.html build/200.html
+      - run: #Deploy the demo app to surge.sh (overrides existing version)
+          name: Deploy Demo App to Surge.sh
+          command: npm run deploy:demo

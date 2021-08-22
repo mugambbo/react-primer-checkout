@@ -318,7 +318,7 @@ exports[`<CheckoutContainer /> renders the checkout container with defaults 1`] 
             </button>
           </PayButton>
           <span
-            className="helper"
+            className="helper-error"
             id="helper-container"
           />
         </div>

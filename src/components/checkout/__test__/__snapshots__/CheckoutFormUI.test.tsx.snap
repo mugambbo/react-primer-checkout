@@ -37,7 +37,7 @@ exports[`<CheckoutFormUI /> renders the checkout ui 1`] = `
       loading={false}
     />
     <span
-      className="helper"
+      className="helper-error"
       id="helper-container"
     />
   </div>

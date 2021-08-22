@@ -1,4 +1,4 @@
-"use strict";
+
 exports.__esModule = true;
 var reportWebVitals = function (onPerfEntry) {
     if (onPerfEntry && onPerfEntry instanceof Function) {
