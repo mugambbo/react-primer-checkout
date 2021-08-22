@@ -100,8 +100,8 @@ jobs:
           paths:
             - build
       - store_artifacts: # for staging (Build Files)
-          path: build
-          destination: ./build
+          path: dist
+          destination: ./dist
 
   size: #4 - Test size-limit
     <<: *defaults
