@@ -141,10 +141,10 @@ jobs:
     <<: *defaults
     steps:
       - attach_workspace:
-          at: ./react-checkout-example
+          at: ~/react-checkout-example
       - restore_cache:
           keys:
-            - dependency-cache-demo-{{ checksum "react-checkout-example/package.json" }}-{{ checksum "react-checkout-example/package-lock.json" }}
+            - dependency-cache-demo-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
             # Use the latest cache if no exact match is found
             - dependency-cache-demo-
       - run:
@@ -156,7 +156,7 @@ jobs:
       - save_cache: #Install NPM dependencies (package.json)
           paths:
             - node_modules
-          key: dependency-cache-demo-{{ checksum "react-checkout-example/package.json" }}-{{ checksum "react-checkout-example/package-lock.json" }}
+          key: dependency-cache-demo-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
       - run:
           name: Build React Demo App
           command: CI=false npm run build
