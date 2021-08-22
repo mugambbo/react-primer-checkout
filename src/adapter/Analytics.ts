@@ -21,7 +21,9 @@ const Analytics = {
 
 export const Events = {
     PAY: 'Pay',
-    START: 'Start'
+    START: 'Start',
+    PAY_ERROR: 'PayError',
+    PAY_SUCCESS: 'PaySuccess'
 }
 
 export default Analytics;

@@ -134,13 +134,24 @@ function CheckoutContainer(props: CheckoutProps): ReactElement {
             const tokenRes: PaymentTokenizationResponse = await CheckoutFetch.post(CheckoutSDKPaths.PAYMENT_INSTRUMENT, props.clientToken, data);
             props.onTokenizationComplete(tokenRes);
             setLoading(false);
+            Analytics.track(Events.PAY_SUCCESS, {
+                timestamp: new Date().toISOString(),
+                initials: cardName.split(" ")[0].trim().charAt(0) + cardName.split(" ")[1].trim().charAt(0),
+                cardLastDigits: cardNumber.substring(cardNumber.length - 5, cardNumber.length)                
+            });            
         } catch(err) {
             setLoading(false);
             props.onTokenizationComplete(undefined, err.error?? err);
+            Analytics.track(Events.PAY_ERROR, {
+                timestamp: new Date().toISOString(),
+                initials: cardName.split(" ")[0].trim().charAt(0) + cardName.split(" ")[1].trim().charAt(0),
+                cardLastDigits: cardNumber.substring(cardNumber.length - 5, cardNumber.length)                
+            });
         }
 
         Analytics.track(Events.PAY, {
-            initials: cardName.split(" ")[0].trim() + cardName.split(" ")[1].trim(),
+            timestamp: new Date().toISOString(),
+            initials: cardName.split(" ")[0].trim().charAt(0) + cardName.split(" ")[1].trim().charAt(0),
             cardLastDigits: cardNumber.substring(cardNumber.length - 5, cardNumber.length)
         });
     }

@@ -15,6 +15,8 @@
   <a href="https://www.npmjs.com/package/react-checkout-challenge"><img src="https://img.shields.io/badge/react-17.0.2-aqua" alt="React library"></a>
 </div>
 
+[![mugambbo](https://circleci.com/gh/mugambbo/react-primer-checkout.svg?style=svg)](https://app.circleci.com/pipelines/github/mugambbo/react-primer-checkout)
+
 ---
 
 ![React Primer Checkout Screenshot](https://github.com/mugambbo/react-primer-checkout/raw/master/react-checkout-example/public/img1.png "React Primer Checkout Screenshot")
@@ -22,7 +24,7 @@
 ---
 
 ## About
-React Primer Checkout is a react library which provides merchants with the tools required to easily collect payment information and generate access tokens using APIs from primer.io. 
+React Primer Checkout is a react library that provides merchants with the tools required to easily collect payment information and generate access tokens using APIs from primer.io. 
 This package contains:
 - [The React library](https://github.com/mugambbo/react-primer-checkout)
 - [An Example App](https://github.com/mugambbo/react-primer-checkout/tree/master/react-checkout-example)

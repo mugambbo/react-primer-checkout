@@ -1,6 +1,7 @@
 version: 2.1
 
 defaults: &defaults
+  working_directory: ~/
   docker:
     - image: "circleci/node:14.17.5"
 
@@ -54,6 +55,9 @@ jobs:
       - run:
           name: Setup dependencies
           command: npm install
+      - run:
+          name: Print current working directory before deploy
+          command: pwd          
       - save_cache: #Install NPM dependencies (package.json)
           paths:
             - node_modules
@@ -138,37 +142,34 @@ jobs:
           command: npm publish
 
   deploy: #6 - Deploy the demo app to Surge.sh (netlify deployment is automated)
-    working_directory: ~/react-checkout-example
     <<: *defaults
+    working_directory: ~/react-checkout-example
     steps:
       - checkout:
-          path: ~/react-checkout-example
-      - attach_workspace:
-          at: ~/react-checkout-example
+          path: .
+      - attach_workspace: #Attach workspace to the saved root directory
+          at: .              
+      - run:
+          name: Print current working directory before deploy
+          command: pwd
       - restore_cache:
           keys:
             - dependency-cache-demo-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
             # Use the latest cache if no exact match is found
             - dependency-cache-demo-
       - run:
-          name: Sleep (wait 5 minutes for SDK to be published)
-          command: sleep 300
-      - run:
           name: Setup dependencies
-          command: npm install
+          command: cd react-checkout-example && npm install
       - save_cache: #Install NPM dependencies (package.json)
           paths:
             - node_modules
           key: dependency-cache-demo-{{ checksum "package.json" }}-{{ checksum "package-lock.json" }}
-      - run:
+      - run: #Build app for distribution
           name: Build React Demo App
-          command: CI=false npm run build
-      - store_artifacts: #Build files
-          path: build
-          destination: ./build          
+          command: cd react-checkout-example && CI=false npm run build:app
       - run: # Creates a 200.html file (only required for surge.sh)
           name: Creates 200.html file
-          command: cp build/index.html build/200.html
+          command: cd react-checkout-example && cp build/index.html build/200.html
       - run: #Deploy the demo app to surge.sh (overrides existing version)
           name: Deploy Demo App to Surge.sh
-          command: npm run deploy:demo
+          command: cd react-checkout-example && npm run deploy:app
