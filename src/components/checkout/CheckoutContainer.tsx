@@ -131,12 +131,12 @@ function CheckoutContainer(props: CheckoutProps): ReactElement {
         if (cardErrors.cardNumber || cardErrors.cardExpiry || cardErrors.cardCVC || cardNameError) return;
         try {
             const data = buildPaymentInstrument(cardNumber, cardCVC, cardExpiry, cardName);
-            const tokenRes: PaymentTokenizationResponse = await CheckoutFetch.post(CheckoutSDKPaths.PAYMENT_INSTRUMENT, props.clientToken, data);
+            const tokenRes: PaymentTokenizationResponse = await CheckoutFetch.post(CheckoutSDKPaths.PAYMENT_INSTRUMENT, props.clientToken, data);            
             props.onTokenizationComplete(tokenRes);
             setLoading(false);
             Analytics.track(Events.PAY_SUCCESS, {
                 timestamp: new Date().toISOString(),
-                initials: cardName.split(" ")[0].trim().charAt(0) + cardName.split(" ")[1].trim().charAt(0),
+                initials: String(cardName.split(" ")[0].trim().charAt(0)) + String(cardName.split(" ")[1].trim().charAt(0)),
                 cardLastDigits: cardNumber.substring(cardNumber.length - 5, cardNumber.length)                
             });            
         } catch(err) {
@@ -144,14 +144,14 @@ function CheckoutContainer(props: CheckoutProps): ReactElement {
             props.onTokenizationComplete(undefined, err.error?? err);
             Analytics.track(Events.PAY_ERROR, {
                 timestamp: new Date().toISOString(),
-                initials: cardName.split(" ")[0].trim().charAt(0) + cardName.split(" ")[1].trim().charAt(0),
+                initials: String(cardName.split(" ")[0].trim().charAt(0)) + String(cardName.split(" ")[1].trim().charAt(0)),
                 cardLastDigits: cardNumber.substring(cardNumber.length - 5, cardNumber.length)                
             });
         }
 
         Analytics.track(Events.PAY, {
             timestamp: new Date().toISOString(),
-            initials: cardName.split(" ")[0].trim().charAt(0) + cardName.split(" ")[1].trim().charAt(0),
+            initials: String(cardName.split(" ")[0].trim().charAt(0)) + String(cardName.split(" ")[1].trim().charAt(0)),
             cardLastDigits: cardNumber.substring(cardNumber.length - 5, cardNumber.length)
         });
     }

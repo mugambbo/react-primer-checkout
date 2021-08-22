@@ -15,7 +15,7 @@
   <a href="https://www.npmjs.com/package/react-checkout-challenge"><img src="https://img.shields.io/badge/react-17.0.2-aqua" alt="React library"></a>
 </div>
 
-[![mugambbo](https://circleci.com/gh/mugambbo/react-primer-checkout.svg?style=svg)](https://app.circleci.com/pipelines/github/mugambbo/react-primer-checkout)
+[![build-status](https://circleci.com/gh/mugambbo/react-primer-checkout.svg?style=svg&circle-token=30613acf3eecb26fd92ad1ad58920187cf8e7692)](https://app.circleci.com/pipelines/github/mugambbo/react-primer-checkout)
 
 ---
 
