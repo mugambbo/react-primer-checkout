@@ -12,7 +12,7 @@
   <br />
   <a href="https://www.npmjs.com/package/react-checkout-challenge"><img src="https://img.shields.io/badge/npm-v7.21.0-blue" alt="Node version"></a>
   <a href="https://www.npmjs.com/package/react-checkout-challenge"><img src="https://img.shields.io/badge/size-111.69kb-green" alt="Unzipped library size"></a>
-  <a href="https://www.npmjs.com/package/react-checkout-challenge"><img src="https://img.shields.io/badge/react-17.0.18-aqua" alt="React library"></a>
+  <a href="https://www.npmjs.com/package/react-checkout-challenge"><img src="https://img.shields.io/badge/react-17.0.2-aqua" alt="React library"></a>
 </div>
 
 ---
