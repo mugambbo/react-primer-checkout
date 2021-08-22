@@ -98,7 +98,7 @@ jobs:
       - persist_to_workspace: #Required for publish and deploy jobs
           root: .
           paths:
-            - build
+            - dist
       - store_artifacts: # for staging (Build Files)
           path: dist
           destination: ./dist
