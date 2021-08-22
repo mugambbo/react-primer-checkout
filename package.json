@@ -51,7 +51,6 @@
     "eject": "react-scripts eject",
     "size": "npm run build && size-limit",
     "test:coverage": "npm run test -- -u --coverage --watchAll=false",
-    "deploy:demo": "cp react-checkout-example/build/index.html react-checkout-example/build/200.html && surge --project build --domain https://react-primer-checkout.surge.sh",
     "test:lint": "eslint --ext .tsx,.ts,.jsx,.js src/ --max-warnings 5",
     "test:snapshot": "npm run test -- -u --watchAll=false",
     "test:size": "size-limit",
