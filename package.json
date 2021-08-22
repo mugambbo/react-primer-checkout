@@ -44,8 +44,8 @@
   "scripts": {
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "build:esm": "tsc && cp src/index.css dist/esm",
-    "build:cjs": "tsc --module commonjs --outDir dist/cjs && cp src/index.css dist/cjs",
+    "build:esm": "tsc -p tsconfig.build.json && cp src/index.css dist/esm",
+    "build:cjs": "tsc -p tsconfig.build.json --module commonjs --outDir dist/cjs && cp src/index.css dist/cjs",
     "build:all": "npm run build:esm && npm run build:cjs",
     "test": "react-scripts test",
     "eject": "react-scripts eject",

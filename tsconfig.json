@@ -25,7 +25,10 @@
     "jsx": "react-jsx",
     "suppressImplicitAnyIndexErrors": true,
     "strict": true,
-    "allowJs": true
+    "allowJs": true,
+    "skipLibCheck": true,
+    "isolatedModules": true,
+    "noEmit": true
   },
   "include": [
     "src"
