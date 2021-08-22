@@ -11,7 +11,7 @@
     "@types/react": "^17.0.19",
     "@types/react-dom": "^17.0.9",
     "react": "^17.0.2",
-    "react-checkout-challenge": "^0.1.19",
+    "react-checkout-challenge": "^0.1.20",
     "react-dom": "^17.0.2",
     "react-scripts": "4.0.3",
     "styled-components": "^5.3.0",
@@ -23,7 +23,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test",
     "eject": "react-scripts eject",
-    "deploy:demo": "cp build/index.html build/200.html && surge --project build --domain https://react-primer-checkout.surge.sh"
+    "deploy:demo": "surge --project build --domain https://react-primer-checkout.surge.sh"
   },
   "eslintConfig": {
     "extends": [
@@ -45,6 +45,7 @@
   },
   "devDependencies": {
     "@types/react-router-dom": "^5.1.8",
-    "@types/styled-components": "^5.1.12"
+    "@types/styled-components": "^5.1.12",
+    "surge": "^0.23.0"
   }
 }

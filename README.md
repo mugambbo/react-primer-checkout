@@ -164,7 +164,7 @@ Want to see how it works? Install the Example App in this package.
 
 ## The Example App
 The example app was bootstrapped using create-react-app. To run it, execute the following commands on your terminal:
-1. `$ [git clone mugambbo/react-primer-checkout](https://github.com/mugambbo/react-primer-checkout.git)`
+1. `$ git clone https://github.com/mugambbo/react-primer-checkout.git`
 2. `$ cd react-checkout-example`
 3. `$ npm install`
 4. `$ npm start`
